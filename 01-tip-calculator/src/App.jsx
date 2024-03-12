@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import iconDollar from "./images/icon-dollar.svg";
+import iconPerson from "./images/icon-person.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1 className="title"> Splitter </h1>
+      <div className="container">
+        <div className="container-options">
+          <div className="input-container">
+            <h2 className="title-container">Bill</h2>
+            <input type="text" className="input" placeholder="0" />
+            <img className="img-input" src={iconDollar} alt="" />
+          </div>
+          <div>
+            <h2 className="title-container">Select tip %</h2>
+            <div className="grid-options">
+              <button className="button-option">5%</button>
+              <button className="button-option">10%</button>
+              <button className="button-option">15%</button>
+              <button className="button-option">25%</button>
+              <button className="button-option">50%</button>
+              <input type="text" className="input" placeholder="Custom" />
+            </div>
+          </div>
+          <div className="input-container">
+            <h2 className="title-container">Number of People</h2>
+            <input type="text" className="input" placeholder="0" />
+            <img className="img-input" src={iconPerson} alt="" />
+          </div>
+        </div>
+        <div className="container-results">
+          <div>
+            <div className="results">
+              <div>
+                <h2 className="title-results">Tip Amount</h2>
+                <p className="subtitle-results">/ person</p>
+              </div>
+              <h3 className="price">$4.24</h3>
+            </div>
+            <div className="results">
+              <div>
+                <h2 className="title-results">Total</h2>
+                <p className="subtitle-results">/ person</p>
+              </div>
+              <h3 className="price">$4.24</h3>
+            </div>
+          </div>
+          <button className="button-reset">Reset</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
