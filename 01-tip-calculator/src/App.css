@@ -19,12 +19,13 @@
   grid-auto-rows: min-content;
   & .title-container {
     color: var(--grayish-cyan);
-    font-size: 20px;
+    font-size: 15px;
   }
   & .input-container {
     position: relative;
   }
   & .input {
+    font-family: "Space Mono", monospace;
     width: 100%;
     background-color: var(--very-light-grayish-cyan);
     color: var(--dark-grayish-cyan);
@@ -40,6 +41,19 @@
     position: absolute;
     top: 60%;
     right: 90%;
+  }
+
+  & .container-paragraph {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .error {
+    color: red;
+  }
+
+  & .hidden {
+    display: none;
   }
 }
 
@@ -63,6 +77,7 @@
   grid-auto-rows: max-content;
   margin-top: 8px;
   & .button-option {
+    font-family: "Space Mono", monospace;
     /* width: 100%; */
     padding: 7px 0px;
     background-color: var(--very-dark-cyan);
@@ -73,9 +88,14 @@
     font-weight: 700;
     cursor: pointer;
   }
+  & .selected {
+    background-color: var(--strong-cyan);
+    color: var(--very-dark-cyan);
+  }
 }
 .button-option:hover {
   background-color: var(--strong-cyan);
+  color: var(--very-dark-cyan);
 }
 
 .container-results {
@@ -104,6 +124,7 @@
     color: var(--strong-cyan);
   }
   & .button-reset {
+    font-family: "Space Mono", monospace;
     width: 100%;
     padding: 10px 0px;
     background-color: var(--strong-cyan);
@@ -116,6 +137,10 @@
     margin-top: 20px;
     cursor: pointer;
   }
+  & .no-reset {
+    background: var(--dark-grayish-cyan);
+    cursor: not-allowed;
+  }
 }
 
 @media (width > 760px) {
@@ -123,6 +148,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 35px;
     padding: 35px;
+    & .title-container {
+      font-size: 17px;
+    }
   }
 
   .container-results {
@@ -134,7 +162,9 @@
     padding: 30px;
     & .button-reset {
       justify-self: end;
+      font-size: 24px;
     }
+
     & .title-results {
       font-size: 20px;
       font-weight: 700;
@@ -144,7 +174,7 @@
       color: var(--grayish-cyan);
     }
     & .price {
-      font-size: 35px;
+      font-size: 40px;
       color: var(--strong-cyan);
     }
   }
@@ -155,10 +185,19 @@
 }
 
 @media (width > 1020px) {
+  .title-container {
+    font-size: 20px;
+  }
   .grid-options {
     grid-template-columns: 1fr 1fr 1fr;
   }
   .img-input {
     right: 0;
+  }
+  .title {
+    margin: 0px auto 35px auto;
+  }
+  .price {
+    font-size: 50px;
   }
 }
