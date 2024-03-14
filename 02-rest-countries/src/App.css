@@ -1,0 +1,7 @@
+#root {
+  width: 100%;
+}
+
+.element {
+  background-color: var(--elements-dark);
+}
