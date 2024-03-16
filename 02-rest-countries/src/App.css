@@ -72,11 +72,6 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0px 1px 1px rgb(32, 32, 32);
-  display: none;
-
-  & .show {
-    display: block;
-  }
 
   & .option {
     padding: 8px;
@@ -100,6 +95,9 @@
   & .filter-title {
     font-size: 14px;
     font-weight: 400;
+  }
+  & svg {
+    cursor: pointer;
   }
 }
 
@@ -126,6 +124,8 @@
     height: 300px;
     width: 250px;
     background-color: var(--elements-dark);
+    transition: scale 0.1s ease-in-out;
+
     & .card-image {
       width: 100%;
       height: 45%;
@@ -147,6 +147,101 @@
       }
     }
   }
+}
+.card:hover {
+  outline: 1px solid white;
+  box-shadow: 0px 0px 1px white;
+  scale: 1.05;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: var(--elements-dark);
+  padding: 30px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Sombra ligera */
+  width: 80%;
+  /* Máximo ancho del modal */
+  height: 80%;
+  /* Máxima altura del modal */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Permitir scroll si el contenido es demasiado largo */
+}
+
+.container-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  & .modal-image {
+    width: 100%;
+    /* height: 20%; */
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  & .modal-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+    & .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    & p {
+      font-size: 15px;
+      font-weight: 200;
+      & span {
+        font-weight: 600;
+      }
+    }
+  }
+  & .container-bordes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 8px 0;
+    & .borde {
+      padding: 2px 20px;
+      background-color: var(--elements-dark-hover);
+      box-shadow: 0px 0px 5px 2px rgb(43, 45, 53);
+      font-weight: 200;
+      font-size: 16px;
+    }
+  }
+}
+
+.modal-close {
+  position: absolute;
+  padding: 5px 15px;
+  top: 25px;
+  right: 25px;
+  background: var(--elements-dark);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0px 0px 5px 2px rgb(43, 45, 53);
+}
+
+.modal-close:hover {
+  color: rgba(255, 0, 0, 0.575);
+  scale: 1.05;
 }
 
 @media (width > 750px) {
