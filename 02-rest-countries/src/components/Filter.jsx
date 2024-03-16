@@ -1,16 +1,46 @@
 import { useState } from "react";
+import { Option } from "./Option.jsx";
 
-export default function Filter() {
+const options = [
+  {
+    id: "africa",
+    name: "Africa",
+  },
+  {
+    id: "americas",
+    name: "America",
+  },
+  {
+    id: "asia",
+    name: "Asia",
+  },
+  {
+    id: "europe",
+    name: "Europe",
+  },
+  {
+    id: "oceania",
+    name: "Oceania",
+  },
+];
+
+export default function Filter({ setFilter }) {
   const [show, setShow] = useState(false);
+  const [filterName, setFilterName] = useState("Filter by Region");
 
   const handleShow = () => {
     setShow(!show);
   };
 
+  const handleFilterChange = (Option) => {
+    setFilterName(Option);
+    setShow(false);
+  };
+
   return (
     <div className="container-filter-options">
       <div className="container-filter">
-        <h3 className="filter-title">Filter by Region</h3>
+        <h3 className="filter-title">{filterName}</h3>
         <svg
           onClick={handleShow}
           width={"15px"}
@@ -27,23 +57,19 @@ export default function Filter() {
           />
         </svg>
       </div>
-      <div className={`container-options ${show ? "show" : ""} `}>
-        <div className="option">
-          <p>Africa</p>
+      {show && (
+        <div className="container-options">
+          {options?.map((option) => (
+            <Option
+              key={option.id}
+              name={option.name}
+              selected={handleFilterChange}
+              id={option.id}
+              setFilter={setFilter}
+            />
+          ))}
         </div>
-        <div className="option">
-          <p>Ameria</p>
-        </div>
-        <div className="option">
-          <p>Europe</p>
-        </div>
-        <div className="option">
-          <p>Asia</p>
-        </div>
-        <div className="option">
-          <p>Oceania</p>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
