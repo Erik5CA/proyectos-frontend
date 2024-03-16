@@ -1,4 +1,8 @@
-export default function Search() {
+export default function Search({ setSearch }) {
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className=" container-search">
       <svg
@@ -17,6 +21,7 @@ export default function Search() {
       </svg>
 
       <input
+        onChange={handleSearchChange}
         type="search"
         className="input-search"
         placeholder="Search for a country.."
