@@ -3,6 +3,10 @@ import { Option } from "./Option.jsx";
 
 const options = [
   {
+    id: "all",
+    name: "All",
+  },
+  {
     id: "africa",
     name: "Africa",
   },
