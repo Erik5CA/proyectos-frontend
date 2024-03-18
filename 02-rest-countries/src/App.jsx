@@ -1,23 +1,26 @@
 import { useState } from "react";
-import "./App.css";
+import { useEffect } from "react";
 import BarSup from "./components/BarSup";
 import Card from "./components/Card.jsx";
 import Filter from "./components/Filter";
 import Search from "./components/Search";
-import paises from "./data.js";
-import { useEffect } from "react";
 import Modal from "./components/Modal.jsx";
+import paises from "./data.js";
+import "./App.css";
 
 function App() {
   // const paises12 = paises.slice(0, 12);
   const [countries, setCountries] = useState(paises);
   const [countriesCurrent, setCountriesCurrent] = useState(paises);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(false);
   const [countrySelect, setCountrySelect] = useState("");
 
   const filterRegion = (region) => {
+    if (filter === "all") {
+      return paises;
+    }
     const filterCountries = paises.filter(
       (country) => country.region.toLowerCase() === region
     );
@@ -28,7 +31,6 @@ function App() {
     const filterCountries = countriesCurrent?.filter((country) =>
       country.name.toLowerCase().startsWith(search)
     );
-    // console.log(filterCountries);
     return filterCountries;
   };
 
@@ -38,10 +40,8 @@ function App() {
   }, [search]);
 
   useEffect(() => {
-    if (filter === "All") return;
     const newCountriesReg = filterRegion(filter);
     setCountriesCurrent([...newCountriesReg]);
-    // const newCountries = searchCountry(search);
     setCountries([...newCountriesReg]);
   }, [filter]);
 
@@ -51,7 +51,6 @@ function App() {
 
   const handleSelecCountry = (idCountry) => {
     setCountrySelect(idCountry);
-    console.log(idCountry);
   };
 
   return (
@@ -68,14 +67,18 @@ function App() {
       <main>
         <div className="container-barra">
           <div className="cards">
-            {countries?.map((pais) => (
-              <Card
-                key={pais.name}
-                pais={pais}
-                openModal={openModal}
-                selection={handleSelecCountry}
-              />
-            ))}
+            {countries.length !== 0 ? (
+              countries?.map((pais) => (
+                <Card
+                  key={pais.name}
+                  pais={pais}
+                  openModal={openModal}
+                  selection={handleSelecCountry}
+                />
+              ))
+            ) : (
+              <h2>No results were found for this search</h2>
+            )}
           </div>
         </div>
         {modal && (
